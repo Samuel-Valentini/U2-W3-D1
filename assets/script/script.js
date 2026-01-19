@@ -72,4 +72,15 @@ form.addEventListener("submit", function (event) {
     spec.value = "";
     bre.value = "";
     allAnimals.push(pet);
+
+    if (
+        allAnimals[allAnimals.length - 2] !== undefined &&
+        allAnimals[allAnimals.length - 1].sameOwner(
+            allAnimals[allAnimals.length - 2],
+        )
+    ) {
+        console.log("gli ultimi due sono dello stesso padrone");
+    } else {
+        console.log("padroni differenti");
+    }
 });
