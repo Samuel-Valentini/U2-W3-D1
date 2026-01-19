@@ -50,6 +50,7 @@ form.addEventListener("submit", function (event) {
     const bre = document.getElementById("breed");
 
     const pet = new Pet(name.value, owner.value, spec.value, bre.value);
+    allAnimals.push(pet);
 
     const tableRow = document.getElementById("tableA");
     const createTr = document.createElement("tr");
@@ -57,6 +58,7 @@ form.addEventListener("submit", function (event) {
     const createTd2 = document.createElement("td");
     const createTd3 = document.createElement("td");
     const createTd4 = document.createElement("td");
+    const createTd5 = document.createElement("td");
     const newText1 = document.createTextNode(pet.petName);
     const newText2 = document.createTextNode(pet.petOwner);
     const newText3 = document.createTextNode(pet.species);
@@ -65,13 +67,24 @@ form.addEventListener("submit", function (event) {
     createTd2.appendChild(newText2);
     createTd3.appendChild(newText3);
     createTd4.appendChild(newText4);
-    createTr.append(createTd1, createTd2, createTd3, createTd4);
+
+    for (let i = 0; i < allAnimals.length - 1; i++) {
+        if (
+            allAnimals[i].petOwner ===
+            allAnimals[allAnimals.length - 1].petOwner
+        ) {
+            const newText5 = document.createTextNode(`Riga ${i + 1}. `);
+
+            createTd5.appendChild(newText5);
+        }
+    }
+
+    createTr.append(createTd1, createTd2, createTd3, createTd4, createTd5);
     tableRow.appendChild(createTr);
     name.value = "";
     owner.value = "";
     spec.value = "";
     bre.value = "";
-    allAnimals.push(pet);
 
     if (
         allAnimals[allAnimals.length - 2] !== undefined &&
